@@ -32,16 +32,18 @@ field_help = {
 }
 for col in input_columns:
     help_text = field_help.get(col, None)
+    if help_text:
+        st.markdown(f"**{col.upper()}**: {help_text}")
     # Coba konversi ke float, jika bisa berarti numerik
     try:
         data[col] = pd.to_numeric(data[col])
-        val = st.text_input(col, value=str(data[col].mean()), help=help_text)
+        val = st.text_input(col, value=str(data[col].mean()))
         try:
             user_input[col] = float(val)
         except ValueError:
             user_input[col] = None
     except Exception:
-        user_input[col] = st.selectbox(col, data[col].dropna().unique(), help=help_text)
+        user_input[col] = st.selectbox(col, data[col].dropna().unique())
 
 if st.button('Predict'):
     input_df = pd.DataFrame([user_input])
