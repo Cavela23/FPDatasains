@@ -34,7 +34,13 @@ if st.button('Predict'):
             input_encoded[col] = input_df[col].map(mapping)
     try:
         prediction = model.predict(input_encoded)[0]
-        label_map = {0: "Not CKD", 1: "CKD"}
-        st.success(f'Prediction: {label_map.get(prediction, prediction)}')
+        if prediction == 0:
+            st.success('Hasil: Tidak terdeteksi penyakit ginjal')
+            st.info('Saran: Tetap jaga pola hidup sehat dan lakukan pemeriksaan rutin.')
+        elif prediction == 1:
+            st.warning('Hasil: Terdeteksi penyakit ginjal')
+            st.info('Saran: Segera konsultasikan hasil ini ke dokter spesialis ginjal untuk penanganan lebih lanjut.')
+        else:
+            st.info(f'Hasil prediksi: {prediction}')
     except Exception as e:
         st.error(f'Error: {e}')
