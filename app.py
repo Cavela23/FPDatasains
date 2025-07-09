@@ -19,16 +19,29 @@ input_columns = [col for col in data.columns if col not in ['id', 'classificatio
 user_input = {}
 # Keterangan untuk field tertentu
 field_help = {
-    'cad': 'Coronary artery disease (penyakit jantung koroner)',
-    'dm': 'Diabetes mellitus',
-    'ane': 'Anemia',
-    'pe': 'Edema/pembengkakan',
-    'htn': 'Hypertension (tekanan darah tinggi)',
+    'bp': 'Blood pressure (tekanan darah)',
+    'sg': 'Specific gravity (berat jenis urin)',
+    'al': 'Albumin (kadar albumin urin)',
+    'su': 'Sugar (kadar gula urin)',
     'rbc': 'Red blood cells (sel darah merah)',
     'pc': 'Pus cell (sel nanah)',
     'pcc': 'Pus cell clumps (gumpalan sel nanah)',
     'ba': 'Bacteria (bakteri)',
+    'bgr': 'Blood glucose random (gula darah acak)',
+    'bu': 'Blood urea (urea darah)',
+    'sc': 'Serum creatinine (kreatinin serum)',
+    'sod': 'Sodium (natrium)',
+    'pot': 'Potassium (kalium)',
+    'hemo': 'Hemoglobin',
+    'pcv': 'Packed cell volume (volume sel darah merah)',
+    'wc': 'White blood cell count (jumlah sel darah putih)',
+    'rc': 'Red blood cell count (jumlah sel darah merah)',
+    'htn': 'Hypertension (tekanan darah tinggi)',
+    'dm': 'Diabetes mellitus',
+    'cad': 'Coronary artery disease (penyakit jantung koroner)',
     'appet': 'Appetite (nafsu makan)',
+    'pe': 'Edema/pembengkakan',
+    'ane': 'Anemia',
 }
 for col in input_columns:
     help_text = field_help.get(col, None)
