@@ -18,10 +18,16 @@ st.dataframe(data.head(20))
 input_columns = [col for col in data.columns if col not in ['id', 'classification']]
 user_input = {}
 for col in input_columns:
-    if data[col].dtype == 'object' or data[col].isnull().any():
+    # Coba konversi ke float, jika bisa berarti numerik
+    try:
+        data[col] = pd.to_numeric(data[col])
+        val = st.text_input(col, value=str(data[col].mean()))
+        try:
+            user_input[col] = float(val)
+        except ValueError:
+            user_input[col] = None
+    except Exception:
         user_input[col] = st.selectbox(col, data[col].dropna().unique())
-    else:
-        user_input[col] = st.number_input(col, float(data[col].min()), float(data[col].max()), float(data[col].mean()))
 
 if st.button('Predict'):
     input_df = pd.DataFrame([user_input])
